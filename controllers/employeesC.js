@@ -1,26 +1,24 @@
-var empModel = require('../models/employeesM')
+var empModel = require('../models/employeesM');
+
 module.exports = {
   addEmp: (req, res, next) => {
-    console.log(11);
-    console.log("ni");
-    empModel.addEmp(req.body.emp_name, req.body.emp_id, req.body.emp_address, req.body.emp_phone)
+    empModel.addEmp(req.body)
     .then(emp=>{
       res.status(200).json(emp);
     })
     .catch(e =>{
-      res.status(200).json("error");
+      res.status(200).json(e);
     })
-    console.log(1111);
   },
 
 
-  getEmp: (req, res, next) => {
-    empModel.getEmp()
+  getAllEmp: (req, res, next) => {
+    empModel.getAllEmp()
     .then(emp =>{
       res.status(200).json(emp);
     })
     .catch(e =>{
-      res.status(200).json("error");
+      res.status(200).json(e);
     })
     console.log(1111);
   },
@@ -31,7 +29,7 @@ module.exports = {
       res.status(200).json(emp);
     })
     .catch(e =>{
-      res.status(200).json("error");
+      res.status(200).json(e);
     })
     console.log(1111);
   },
@@ -47,7 +45,7 @@ module.exports = {
       res.status(200).json("deleted")
     })
     .catch(e =>{
-      res.status(200).json("error");
+      res.status(200).json(e);
     })
   },
 
@@ -58,7 +56,7 @@ module.exports = {
       res.status(200).json(emp);
     })
     .catch(e=>{
-      res.status(200).json("error");
+      res.status(200).json(e);
     })
 
   }

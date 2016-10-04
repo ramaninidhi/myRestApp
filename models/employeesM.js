@@ -7,14 +7,14 @@ app.use(bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false}));
 mongoose.connect('mongodb://localhost/myRestAppDatabase');
 module.exports = {
-  addEmp: (name,id,address,phone) =>{
+  addEmp: (user) => {
     //res.render('index', { title: 'Express' });
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       var emp = new Emp({
-        emp_name: name,
-        emp_id: id,
-        emp_address: address,
-        emp_phone: phone
+        emp_name: user.emp_name,
+        emp_id: user.emp_id,
+        emp_address: user.emp_address,
+        emp_phone: user.emp_phone
       });
 
       emp.save(function(err){
@@ -28,7 +28,7 @@ module.exports = {
     })
   },
 
-  getEmp: a=>{
+  getAllEmp: () => {
     return new Promise((resolve,reject)=>{
       console.log(1);
       Emp.find({},function(err,emp){
@@ -42,7 +42,7 @@ module.exports = {
     })
   },
 
-  getEmpById: (id)=>{
+  getEmpById: (id) => {
     return new Promise((resolve,reject)=>{
       console.log(1);
       Emp.find({emp_id: id},function(err,emp){
